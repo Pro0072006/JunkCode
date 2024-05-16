@@ -13,17 +13,21 @@ public class PuzzleControlador {
     }
 
     public void BotonFicha(String textoBoton) {
-        int tile = Integer.parseInt(textoBoton);
-        if (!modelo.Mover(tile)) {
-            vista.MostrarMensaje();
+        if (textoBoton.equals("")) {
             return;
         }
+
+        int ficha = Integer.parseInt(textoBoton);
+        if (!modelo.Mover(ficha)) {
+            return;
+        }
+
+        vista.ActualizarTablero(modelo.getTablero());
+        vista.ActualizarMovimientosLabel(modelo.getMovimientos());
 
         if (modelo.EstaResuelto()) {
             vista.MostrarMensajeGanador();
         }
-        vista.ActualizarTablero(modelo.getTablero());
-        vista.ActualizarMovimientosLabel(modelo.getMovimientos());
     }
 
     public void NuevoJuegoBoton() {
@@ -31,6 +35,5 @@ public class PuzzleControlador {
         modelo.MezclarTablero();
         vista.ActualizarTablero(modelo.getTablero());
         vista.ActualizarMovimientosLabel(modelo.getMovimientos());
-        vista.setTiempoDeInicio(System.currentTimeMillis());
     }
 }

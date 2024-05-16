@@ -1,11 +1,8 @@
 package modelo;
 
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
 
 public class PuzzleModelo {
     private int[][] tablero;
@@ -68,15 +65,60 @@ public class PuzzleModelo {
                 }
             }
         }
-        if ((Math.abs(pocisionVacia[0] - filaFicha) == 1 && pocisionVacia[1] == columnaFicha) ||
-                (Math.abs(pocisionVacia[1] - columnaFicha) == 1 && pocisionVacia[0] == filaFicha)) {
-            tablero[pocisionVacia[0]][pocisionVacia[1]] = ficha;
-            tablero[filaFicha][columnaFicha] = fichaVacia;
-            movimientos++;
-            return true;
-        } else {
+
+        int deltaFila = pocisionVacia[0] - filaFicha;
+        int deltaColumna = pocisionVacia[1] - columnaFicha;
+        int valorAux = -1;
+
+        if (deltaFila == 0 && deltaColumna == 0) {
             return false;
         }
+
+        if (deltaFila > 0 && deltaColumna > 0) {
+            return false;
+        }
+
+        if (deltaFila > 0 && deltaColumna == 0) {
+            for (int i = 0; i < deltaFila; i++) {
+                valorAux = tablero[pocisionVacia[0] - i][columnaFicha];
+                tablero[pocisionVacia[0] - i][columnaFicha] = tablero[pocisionVacia[0] - i - 1][columnaFicha];
+                tablero[pocisionVacia[0] - i - 1][columnaFicha] = valorAux;
+                movimientos++;
+            }
+            return true;
+        }
+
+        if (deltaFila < 0 && deltaColumna == 0) {
+            for (int i = 0; i < Math.abs(deltaFila); i++) {
+                valorAux = tablero[pocisionVacia[0] + i][columnaFicha];
+                tablero[pocisionVacia[0] + i][columnaFicha] = tablero[pocisionVacia[0] + i + 1][columnaFicha];
+                tablero[pocisionVacia[0] + i + 1][columnaFicha] = valorAux;
+                movimientos++;
+            }
+            return true;
+        }
+
+        if (deltaFila == 0 && deltaColumna > 0) {
+            for (int i = 0; i < deltaColumna; i++) {
+                valorAux = tablero[filaFicha][pocisionVacia[1] - i];
+                tablero[filaFicha][pocisionVacia[1] - i] = tablero[filaFicha][pocisionVacia[1] - i - 1];
+                tablero[filaFicha][pocisionVacia[1] - i - 1] = valorAux;
+                movimientos++;
+            }
+            return true;
+        }
+
+        if (deltaFila == 0 && deltaColumna < 0) {
+            for (int i = 0; i < Math.abs(deltaColumna); i++) {
+                valorAux = tablero[filaFicha][pocisionVacia[1] + i];
+                tablero[filaFicha][pocisionVacia[1] + i] = tablero[filaFicha][pocisionVacia[1] + i + 1];
+                tablero[filaFicha][pocisionVacia[1] + i + 1] = valorAux;
+                movimientos++;
+            }
+            return true;
+        }
+
+        return false;
     }
 
     public boolean EstaResuelto() {

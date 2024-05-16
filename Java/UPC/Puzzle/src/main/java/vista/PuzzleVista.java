@@ -5,17 +5,12 @@ import javax.swing.*;
 import controlador.PuzzleControlador;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 
 public class PuzzleVista extends JFrame {
     private PuzzleControlador controlador;
     private JButton[][] botones;
     private JLabel tiempoLabel;
     private JLabel movimientosLabel;
-    private long tiempoDeInicio;
-    private Timer temporizador;
 
     public PuzzleVista() {
 
@@ -47,13 +42,11 @@ public class PuzzleVista extends JFrame {
         add(gamePanel, BorderLayout.CENTER);
 
         JPanel infoPanel = new JPanel(new FlowLayout());
-        tiempoLabel = new JLabel("Timer: 0 seconds");
-        infoPanel.add(tiempoLabel);
-        movimientosLabel = new JLabel("Moves: 0");
+        movimientosLabel = new JLabel("Movimientos: 0");
         infoPanel.add(movimientosLabel);
         add(infoPanel, BorderLayout.NORTH);
 
-        JButton newGameButton = new JButton("New Game");
+        JButton newGameButton = new JButton("Nuevo juego");
         newGameButton.addActionListener(e -> controlador.NuevoJuegoBoton());
         add(newGameButton, BorderLayout.SOUTH);
 
@@ -83,30 +76,8 @@ public class PuzzleVista extends JFrame {
         movimientosLabel.setText("Movimientos: " + movimientos);
     }
 
-    public void setTiempoDeInicio(long tiempoDeInicio) {
-        this.tiempoDeInicio = tiempoDeInicio;
-        EmpezarContador();
-    }
-
-    private void EmpezarContador() {
-        temporizador = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                long tiempoTranscurrido = (System.currentTimeMillis() - tiempoDeInicio) / 1000;
-                DecimalFormat df = new DecimalFormat("0");
-                tiempoLabel.setText("Contador: " + df.format(tiempoTranscurrido) + " segundos");
-            }
-        });
-        temporizador.start();
-    }
-
     public void MostrarMensajeGanador() {
-        temporizador.stop();
         JOptionPane.showMessageDialog(this,
-                "Felicitaciones! Resolviste el puzzle en:  " + tiempoLabel.getText() + " segundos!");
-    }
-
-    public void MostrarMensaje() {
-        JOptionPane.showMessageDialog(this, "Movimiento no válido. Inténtalo de nuevo.");
+                "Felicitaciones! Resolviste el puzzle en:  " + movimientosLabel.getText());
     }
 }

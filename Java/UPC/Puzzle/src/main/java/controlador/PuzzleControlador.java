@@ -1,7 +1,7 @@
 package controlador;
 
+import interfaz.PuzzleVista;
 import modelo.PuzzleModelo;
-import vista.PuzzleVista;
 
 public class PuzzleControlador {
     private PuzzleModelo modelo;

@@ -2,7 +2,6 @@ package interfaz;
 
 import controlador.PuzzleControlador;
 import modelo.PuzzleModelo;
-import vista.PuzzleVista;
 
 public class Puzzle15GUI {
 

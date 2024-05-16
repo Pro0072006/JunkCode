@@ -51,6 +51,10 @@ public class PuzzleModelo {
                 tablero[i][j] = list.get(index++);
             }
         }
+
+        if (!SePuedeResolver()) {
+            MezclarTablero();
+        }
     }
 
     public boolean Mover(int ficha) {
@@ -145,5 +149,38 @@ public class PuzzleModelo {
             }
         }
         return pos;
+    }
+
+    private boolean SePuedeResolver() {
+        int inversiones = 0;
+        int filaFichaVacia = EncontrarFichaVacia()[0] + 1;
+        int[] tableroUni = new int[16];
+
+        int cuenta = 0;
+        for (int i = 0; i < tamaño; i++) {
+            for (int j = 0; j < tamaño; j++) {
+                tableroUni[cuenta++] = tablero[i][j];
+            }
+        }
+
+        for (int i = 0; i < 16; i++) {
+            if (tableroUni[i] == 16) {
+                continue;
+            }
+            for (int j = i + 1; j < 16; j++) {
+                if (tableroUni[j] == 16) {
+                    continue;
+                }
+                if (tableroUni[i] > tableroUni[j]) {
+                    inversiones++;
+                }
+            }
+        }
+
+        if (filaFichaVacia % 2 == 0) {
+            return inversiones % 2 == 0; // Es par
+        } else {
+            return inversiones % 2 != 0; // Es impar
+        }
     }
 }

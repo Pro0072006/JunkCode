@@ -1,13 +1,13 @@
 package controlador;
 
-import interfaz.PuzzleVista;
-import modelo.PuzzleModelo;
+import interfaz.PanelDatos;
+import mundo.Proceso;
 
-public class PuzzleControlador {
-    private PuzzleModelo modelo;
-    private PuzzleVista vista;
+public class Controlador {
+    private Proceso modelo;
+    private PanelDatos vista;
 
-    public PuzzleControlador(PuzzleModelo modelo, PuzzleVista vista) {
+    public Controlador(Proceso modelo, PanelDatos vista) {
         this.modelo = modelo;
         this.vista = vista;
     }

@@ -1,17 +1,16 @@
-package modelo;
+package mundo;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PuzzleModelo {
+public class Proceso {
     private int[][] tablero;
     private int tamaño = 4;
     private int fichaVacia = 16;
     private int movimientos = 0;
-    private boolean juegoEmpezado = false;
 
-    public PuzzleModelo() {
+    public Proceso() {
         tablero = new int[tamaño][tamaño];
         InicializarTablero();
     }
@@ -28,14 +27,6 @@ public class PuzzleModelo {
 
     public int getMovimientos() {
         return movimientos;
-    }
-
-    public boolean getJuegoEmpezado() {
-        return juegoEmpezado;
-    }
-
-    public void IniciarJuego() {
-        juegoEmpezado = true;
     }
 
     public int[][] getTablero() {

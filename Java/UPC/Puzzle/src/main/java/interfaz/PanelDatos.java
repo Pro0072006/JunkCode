@@ -2,22 +2,19 @@ package interfaz;
 
 import javax.swing.*;
 
-import controlador.PuzzleControlador;
+import controlador.Controlador;
 
 import java.awt.*;
 
-public class PuzzleVista extends JFrame {
-    private PuzzleControlador controlador;
+public class PanelDatos extends JFrame {
     private JButton[][] botones;
-    private JLabel tiempoLabel;
     private JLabel movimientosLabel;
 
-    public PuzzleVista() {
+    public PanelDatos() {
 
     }
 
-    public void InicializarVista(PuzzleControlador controlador) {
-        this.controlador = controlador;
+    public void InicializarVista(Controlador controlador) {
         setTitle("Puzzle 15");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());

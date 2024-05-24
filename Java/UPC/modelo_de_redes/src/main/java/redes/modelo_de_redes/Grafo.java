@@ -1,19 +1,6 @@
 package redes.modelo_de_redes;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Arrays;
-import java.util.Scanner;
-
-class Vertice {
-    int peso;
-    int capacidad;
-
-    Vertice(int peso, int capacidad) {
-        this.peso = peso;
-        this.capacidad = capacidad;
-    }
-}
 
 class Grafo {
     private Vertice[][] matrizAdayacencia;

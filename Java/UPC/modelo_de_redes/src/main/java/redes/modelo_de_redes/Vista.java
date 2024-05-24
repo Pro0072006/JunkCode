@@ -63,10 +63,10 @@ public class Vista extends JFrame {
             String[] edges = lines[i].split(", ");
             for (int j = 0; j < vertices; j++) {
                 String[] edgeData = edges[j].split(" ");
-                int weight = Integer.parseInt(edgeData[0]);
-                int capacity = Integer.parseInt(edgeData[1]);
-                if (weight != -1 && capacity != -1) {
-                    grafo.AñadirVertice(i, j, weight, capacity);
+                int peso = Integer.parseInt(edgeData[0]);
+                int capacidad = Integer.parseInt(edgeData[1]);
+                if (peso != -1 && capacidad != -1) {
+                    grafo.AñadirVertice(i, j, peso, capacidad);
                 }
             }
         }

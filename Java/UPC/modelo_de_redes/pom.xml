@@ -9,7 +9,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
-        <exec.mainClass>puzzle.modelo_de_redes.Modelo_de_redes</exec.mainClass>
     </properties>
 
 </project>

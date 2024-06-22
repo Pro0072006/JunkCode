@@ -8,6 +8,6 @@ namespace Chess.Models.Pieces
         public PieceColor Color { get; private set; } = color;
         public PieceType Type { get; private set; } = type;
 
-        public abstract bool IsValidMove(Position from, Position to);
+        public abstract bool IsValidMove(Position oldPos, Position newPos);
     }
 }

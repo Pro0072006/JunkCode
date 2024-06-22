@@ -1,22 +1,19 @@
-﻿using Chess.Enums;
-using Chess.Util;
-
-namespace Chess.Models.Pieces
+﻿namespace Chess.Models.Pieces
 {
     public class Pawn(PieceColor color) : Piece(color, PieceType.Pawn)
     {
         public bool HasMoved { get; private set; } = false;
 
-        public override bool IsValidMove(Position from, Position to)
+        public override bool IsValidMove(Position oldPos, Position newPos)
         {
             // Checks if the pawn is moving diagonally
-            if (Math.Abs(from.Column - to.Column) == 1)
+            if (Math.Abs(oldPos.Column - newPos.Column) == 1)
             {
-                if (Color == PieceColor.White && to.Row == from.Row + 1)
+                if (Color == PieceColor.White && oldPos.Row + 1 == newPos.Row)
                 {
                     return true;
                 }
-                else if (Color == PieceColor.Black && to.Row == from.Row - 1)
+                if (Color == PieceColor.Black && oldPos.Row - 1 == newPos.Row)
                 {
                     return true;
                 }
@@ -24,24 +21,26 @@ namespace Chess.Models.Pieces
 
             if (Color == PieceColor.White)
             {
-                if (to.Row == from.Row + 1)
+                if (oldPos.Row + 1 == newPos.Row)
                 {
-                    return from.Column == to.Column;
+                    return oldPos.Column == newPos.Column;
                 }
-                else if (from.Row == 1 && to.Row == from.Row + 2)
+
+                if (oldPos.Row == 1 && oldPos.Row + 2 == newPos.Row && !HasMoved)
                 {
-                    return from.Column == to.Column;
+                    return oldPos.Column == newPos.Column;
                 }
             }
             else if (Color == PieceColor.Black)
             {
-                if (to.Row == from.Row - 1)
+                if (oldPos.Row - 1 == newPos.Row)
                 {
-                    return from.Column == to.Column;
+                    return oldPos.Column == newPos.Column;
                 }
-                else if (from.Row == 6 && to.Row == from.Row - 2)
+
+                if (oldPos.Row == 6 && oldPos.Row - 2 == newPos.Row && !HasMoved)
                 {
-                    return from.Column == to.Column;
+                    return oldPos.Column == newPos.Column;
                 }
             }
 
